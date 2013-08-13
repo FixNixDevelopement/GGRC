@@ -1,6 +1,7 @@
 !!! Strict
 %html{:lang => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
   %head
+    = javascript_include_tag "//www.google.com/jsapi", "chartkick"
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
     %title=@title || "GRC"
     %meta{:name => "viewport", :content => "width=device-width", :'initial-scale' => "1.0"}

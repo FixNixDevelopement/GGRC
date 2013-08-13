@@ -11,9 +11,9 @@ class UserSessionsController < ApplicationController
   end
 
   def login
-    if current_user
-      flash[:notice] = "You are already logged in. Log in as a different user?"
-    end
+    # if current_user
+    #   flash[:notice] = "You are already logged in. Log in as a different user?"
+    # end
   end
 
   def create

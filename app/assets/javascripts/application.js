@@ -1,5 +1,6 @@
 /*
  *= require jquery
+ *= require highcharts
  *= require rails
  *= require jquery-ui
  *= require bootstrap

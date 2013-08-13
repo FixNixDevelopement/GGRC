@@ -1,5 +1,5 @@
 # Author:: Miron Cuperman (mailto:miron+cms@google.com)
-# Copyright:: Google Inc. 2011
+# Copyright:: FixNix Inc. 2011
 # License:: Apache 2.0
 
 # Handle evidence collection
@@ -20,7 +20,7 @@ class EvidenceController < ApplicationController
   #
   # We may get a POST here if a filter is changed.
   #
-  # We may also receive a GET with a Google Docs oauth token, which will be handled
+  # We may also receive a GET with a FixNix Docs oauth token, which will be handled
   # with auth_gdocs.
   def index
     if request.post?
@@ -52,7 +52,7 @@ class EvidenceController < ApplicationController
     render(:partial => "attach_form", :locals => {:sc => sc, :desc => desc})
   end
 
-  # Show a Google doc attachment form - AJAX
+  # Show a FixNix doc attachment form - AJAX
   def new_gdoc
     sc = SystemControl.by_system_control(params[:system_id], params[:control_id], @cycle)
     desc = DocumentDescriptor.find(params[:descriptor_id][:account_id])
@@ -66,7 +66,7 @@ class EvidenceController < ApplicationController
     systems_folder = by_title[system_gfolder(@cycle)]
 
     if !systems_folder
-      flash[:error] = "No #{systems_folder} folder in your Google Docs"
+      flash[:error] = "No #{systems_folder} folder in your FixNix Docs"
       @redirect_url = url_for(:action => :index)
       return render :partial => 'base/ajax_redirect'
     end
@@ -86,7 +86,7 @@ class EvidenceController < ApplicationController
     render(:partial => "attach_form_gdoc", :locals => {:sc => sc, :desc => desc})
   end
 
-  # Attach a document (either Google doc or regular)
+  # Attach a document (either FixNix doc or regular)
   def attach
     @system_control = SystemControl.by_system_control(params[:system_id], params[:control_id], @cycle)
     desc = DocumentDescriptor.find_by_id(params[:descriptor_id])

@@ -1,5 +1,5 @@
 # Author:: Slobodan Kovacevic (mailto:basti@reciprocitynow.com)
-# Copyright:: Google Inc. 2012
+# Copyright:: FixNix Inc. 2012
 # License:: Apache 2.0
 
 class OptionsController < BaseObjectsController
@@ -11,7 +11,7 @@ class OptionsController < BaseObjectsController
   layout 'dashboard'
 
   def index
-    @options = Option.all
+    @options = Option.find_all_by_id(current_user.id)
     if params[:s].present?
       @options = @options.db_search(params[:s])
     end

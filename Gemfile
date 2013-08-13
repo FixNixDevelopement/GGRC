@@ -79,6 +79,10 @@ gem 'devise'
 
 gem 'awesome_nested_set'
 gem 'validation_scopes'
+gem 'chartkick'
+gem "google_visualr", "~> 2.1.0" 
+gem "highcharts-rails"
+gem 'jquery-rails'
 
 group(:development, :test) do
 

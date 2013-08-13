@@ -1,5 +1,5 @@
 # Author:: Miron Cuperman (mailto:miron+cms@google.com)
-# Copyright:: Google Inc. 2012
+# Copyright:: FixNix Inc. 2012
 # License:: Apache 2.0
 
 # Admin dashboard
@@ -16,7 +16,7 @@ class AdminDashController < ApplicationController
   def index
     @accounts = allowed_objs(Account.all, :read)
     @people = allowed_objs(Person.all, :read)
-    @root_categories = allowed_objs(Category., :read)
+    @root_categories = allowed_objs(Category.all, :read)
     @options = allowed_objs(Option.all, :read)
   end
 

@@ -3,7 +3,7 @@
 module DocumentHelper
   # Transform a document URL for display purposes.
   #
-  # Currently just transforms a Google Docs url to the editable document
+  # Currently just transforms a FixNix Docs url to the editable document
   # version.
   def transform_document_url(url)
     gdoc_url = Gdoc.edit_url_from_id_url(url)

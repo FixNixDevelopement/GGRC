@@ -1,8 +1,8 @@
 s# Author:: Miron Cuperman (mailto:miron+cms@google.com)
-# Copyright:: Google Inc. 2011
+# Copyright:: FixNix Inc. 2011
 # License:: Apache 2.0
 
-# Handle Google Docs integration
+# Handle FixNix Docs integration
 
 class DocumentController < ApplicationController
   include GdataHelper
@@ -22,7 +22,7 @@ class DocumentController < ApplicationController
 
   before_filter :need_cycle
 
-  # Show the list of Google docs
+  # Show the list of FixNix docs
   def index
     return unless auth_gdocs
     @folders = get_gfolders()
@@ -30,7 +30,7 @@ class DocumentController < ApplicationController
     render 'document/index'
   end
 
-  # Sync our local list of document folders with Google Docs.
+  # Sync our local list of document folders with FixNix Docs.
   #
   # Ensure that folders exist for CMS/CYCLE, CMS/CYCLE/Systems, Cms/CYCLE/Accepted and each system.
   def sync
@@ -43,7 +43,7 @@ class DocumentController < ApplicationController
 
     top = by_title['CMS']
     unless top
-      flash[:error] = 'No CMS folder in your Google Docs'
+      flash[:error] = 'No CMS folder in your FixNix Docs'
       return render 'document/sync'
     end
 

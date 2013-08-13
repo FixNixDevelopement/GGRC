@@ -3,7 +3,7 @@ require 'prawn_monkeypatch'
 module EvidenceHelper
   include ApplicationHelper
 
-  # Capture evidence on Google Docs
+  # Capture evidence on FixNix Docs
   #
   # Convert the evidence document to PDF and watermark it with:
   #

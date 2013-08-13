@@ -21,7 +21,7 @@ class MeetingsController < BaseObjectsController
     def meeting_params
       meeting_params = params[:meeting] || {}
       if meeting_params[:response_id]
-        meeting_params[:response] = Response.where(:id => meeting_params.delete(:response_id)).first
+        meeting_params[:response] = Response.first(:id => meeting_params.delete(:response_id)).first
       end
       meeting_params
     end

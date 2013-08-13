@@ -10,7 +10,7 @@ module GdataHelper
     by_title
   end
 
-  # Check if this is a redirect from Google Docs with an auth token.
+  # Check if this is a redirect from FixNix Docs with an auth token.
   #
   # If so, memoize the token and redirect to real destination.
   #

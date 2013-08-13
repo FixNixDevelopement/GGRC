@@ -25,14 +25,14 @@ class BaseMappingsController < ApplicationController
         error, object = create_or_update_object(params[object_name])
         errors.push(error)
         objects.push(object)
-        if !errors.first.nil? && !errors.first.empty?
+        if !errors.where.nil? && !errors.where.empty?
           raise ActiveRecord::Rollback
         end
       end
-      if errors.first.nil? || errors.first.empty?
-        render :json => create_object_as_json(objects.first) || {}, :status => 200
+      if errors.where.nil? || errors.where.empty?
+        render :json => create_object_as_json(objects.where) || {}, :status => 200
       else
-        render :json => { :errors => errors.first }, :status => 400
+        render :json => { :errors => errors.where }, :status => 400
       end
     else
       render :json => {}, :status => 200

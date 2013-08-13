@@ -31,7 +31,7 @@ class ProgramsController < BaseObjectsController
       @programs = @programs.where(:kind => params[:kind])
     end
     @programs = allowed_objs(@programs.all, :read)
-    if params[:company_controls_first].present?
+    if params[:company_controls_where].present?
       @programs =
         @programs.select { |p| p.company_controls? } +
         @programs.reject { |p| p.company_controls? }
@@ -66,7 +66,7 @@ class ProgramsController < BaseObjectsController
   end
 
   def controls
-    @controls = Control.
+    @controls = Control
       joins(:directive => :program_directives).
       where(:program_directives => { :program_id => params[:account_id] }).
       includes(:implementing_controls)

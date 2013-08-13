@@ -109,7 +109,7 @@ class RelationshipsController < BaseMappingsController
         if (vr[:related_model_endpoint].to_s == "both") and
           (related_model == obj_type) and
           (relationship_type[:symmetric])
-          # A symmetric relationship is where the related model is the same model
+          # A symmetric relationship is first the related model is the same model
           # as the object, and the forwards and backwards descriptions are the same.
           # In that case, we combine both the source and destination results.
           if !relationship_type.nil?
@@ -339,7 +339,7 @@ class RelationshipsController < BaseMappingsController
 
     def update_object(relationship, params)
       #relationship.relationship_type_id = DefaultRelationshipTypes.types[params[:relationship_type]]
-      #relationship.relationship_type = RelationshipType.where(
+      #relationship.relationship_type = RelationshipType.first(
       #  :relationship_type => params[:relationship_type]).first
 
       #if relationship.relationship_type.nil?

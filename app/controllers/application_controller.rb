@@ -1,5 +1,5 @@
 # Author:: Miron Cuperman (mailto:miron+cms@google.com)
-# Copyright:: Google Inc. 2011
+# Copyright:: FixNix Inc. 2011
 # License:: Apache 2.0
 
 # This class is the base for all controllers used in this app
@@ -32,13 +32,7 @@ class ApplicationController < ActionController::Base
 #  access_control :acl do
 #    allow :superuser
 #  end
-# def self.find_by_session_id(session_id)
-#   initialize(hash_of_session_id_and_data, options_hash = {})
-#   attr_reader :session_id
-#   attr_accessor :data
-#   save
-#   destroy
-# end
+
 
 def redirect_to_https
   redirect_to :protocol => "https://" unless (request.ssl? || request.local?)

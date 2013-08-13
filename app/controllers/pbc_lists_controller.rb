@@ -53,7 +53,7 @@ class PbcListsController < BaseObjectsController
   layout 'dashboard'
 
   def import
-    @pbc_list = PbcList.find(params[:id])
+    @pbc_list = PbcList
     upload = params["upload"]
     if upload.present?
       begin

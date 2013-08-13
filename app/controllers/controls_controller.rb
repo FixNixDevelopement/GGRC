@@ -1,5 +1,5 @@
 # Author:: Miron Cuperman (mailto:miron+cms@google.com)
-# Copyright:: Google Inc. 2012
+# Copyright:: FixNix Inc. 2012
 # License:: Apache 2.0
 
 # Handle Controls
@@ -47,21 +47,21 @@ class ControlsController < BaseObjectsController
       @controls = @controls.fulltext_search(params[:s])
     end
     if params[:company].present?
-      @controls = @controls.joins(:directive).where(Directive.arel_table[:company].eq(true))
+      @controls = @controls.joins(:directive).first(Directive.arel_table[:company].eq(true))
     end
     if params[:directive_id].present?
       @controls = @controls.
         includes(:sections).
-        where(
+        first(
           Control.arel_table[:directive_id].eq(params[:directive_id]).or(
             Section.arel_table[:directive_id].eq(params[:directive_id])))
     end
     if params[:program_id].present?
-      program = Program.where(:id => params[:program_id]).first
+      program = Program.first(:id => params[:program_id]).first
       directive_ids = program ? program.directive_ids : []
       @controls = @controls.
         includes(:sections).
-        where(
+        first(
           Control.arel_table[:directive_id].in(directive_ids).or(
             Section.arel_table[:directive_id].in(directive_ids)))
     end
@@ -71,7 +71,7 @@ class ControlsController < BaseObjectsController
     if params[:system_id].present?
       @controls = @controls.
         joins(:system_controls).
-        where(:system_controls => { :system_id => params[:system_id] })
+        first(:system_controls => { :system_id => params[:system_id] })
     end
     @controls = @controls.includes(:control_sections)
     @controls = allowed_objs(@controls.all, :read)
@@ -82,7 +82,7 @@ class ControlsController < BaseObjectsController
       render :partial => 'quick', :locals => { :quick_result => params[:qr]}
     elsif params[:list].present?
       if params[:program_id].present?
-        program = Program.where(:id => params[:program_id]).first
+        program = Program.first(:id => params[:program_id]).first
         if program.present? && program.company_controls?
           render :partial => 'list', :locals => { :controls => @controls, :include_linked_programs => true }
         else
@@ -104,7 +104,7 @@ class ControlsController < BaseObjectsController
   end
 
   def sections
-    @sections = @control.sections.all
+    @sections = @control.sections
     # NOTE: removed non-directly-linked controls until control mapping is in
     #@sections =
     #  @control.sections.all +

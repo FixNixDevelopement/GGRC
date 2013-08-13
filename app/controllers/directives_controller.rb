@@ -1,5 +1,5 @@
 # Author:: Miron Cuperman (mailto:miron+cms@google.com)
-# Copyright:: Google Inc. 2012
+# Copyright:: FixNix Inc. 2012
 # License:: Apache 2.0
 
 require 'csv'
@@ -137,7 +137,7 @@ class DirectivesController < BaseObjectsController
   end
 
   def sections
-    @sections = @directive.sections.includes(:controls => :implementing_controls)
+    @sections = @directive.sections.includes(:controls => :implementing_controls).find_all_by_id(current_user.id)
     if params[:s]
       @sections = @sections.fulltext_search(params[:s])
     end

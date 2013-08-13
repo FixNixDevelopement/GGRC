@@ -1,6 +1,6 @@
 # A Document
 #
-# Can either be linked by a URL or attached from Google Docs.
+# Can either be linked by a URL or attached from FixNix Docs.
 class Document < ActiveRecord::Base
   include AuthoredModel
   include AuthorizedModel
